@@ -1,0 +1,78 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+
+Idea is to use api
+
+according to website:
+In short, the Retina is a sparse distributed semantic space (also referred to as Distributional Memory [Baroni2010]). 
+
+api has two types of retinas
+"retinaName": "en_synonymous","An English language retina focusing on synonymous similarity.",
+and     "retinaName": "en_associative",
+    "description": "An English language retina balancing synonymous and associative similarity."
+    
+HTTP Status Code 	Reason
+200 	Indicates a successful operation.
+404 	Indicates that the resource was not found. Returns a JSON object with a detailed error message and a description of a possible resolution.
+
+REST API
+
+The API endpoints related to term input are:
+
+    terms retrieve semantic representation for a term
+"http://api.cortical.io/rest/terms?retina_name=en_associative&term=computer&start_index=0&max_results=10&get_fingerprint=false"
+    terms/similar_terms get similar terms for a term
+"http://api.cortical.io/rest/terms/similar_terms?retina_name=en_associative&term=apple&start_index=0&max_results=10&pos_type=NOUN&get_fingerprint=false"
+    terms/contexts get contexts for a term
+"http://api.cortical.io/rest/terms/contexts?retina_name=en_associative&term=apple&start_index=0&max_results=5&get_fingerprint=false"
+
+# TODO
+[x] create link to write down API token to .Renviron using normalizePath("~/.Renviron")
+or something. If there is no .Renviron, ask permission and create it and add
+a line. token is = Sys.getenv("name of thing")
+
+[] default in every call to search for token, if not found, give error:
+make it that api_key = NULL, so it can be used. but defaults to 
+key <- api_key(api) So that internally the api search is called. 
+
+[] make a default GET thingy
+- it has the base url. takes the endpoint, api key header,
+and all the arguments. It takes the returning object and handles the response. 
+The result is then handled by the seperate queries:
+
+so a basic response handler / call constructor
+
+base url: http://api.cortical.io/rest
+
+and seperate for 
+
+- Retina,  GET 1 type
+- Term, GET 3 types
+- Text, POST  6 types
+- Expression, POST 6 types.
+- Compare, POST 2 types compare and compare bulk JSON input
+- Image,  POST/ 3 types
+- Classify post, need FilterTraininObject and name for filter.
+
+
+HTTP errors
+HTTP Status Code 	Reason
+200 	Indicates a successful operation.
+400 	Indicates an incorrect request. Returns a JSON object with a detailed error message and a description of a possible resolution.
+404 	Indicates that the resource was not found. Returns a JSON object with a detailed error message and a description of a possible resolution.
+500 	Indicates a possible database or I/O error. Returns a JSON object with a detailed error message and a description of a possible resolution.
+In reality:
+http status 401 unauthorized access. 
+Does not return a json object but a serialized string.
