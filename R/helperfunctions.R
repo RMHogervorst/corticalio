@@ -1,7 +1,10 @@
 # helperfunctions
 #
-cortical_api <- function(path){
-  modify_url(url = "http://api.cortical.io",port = 80, path = path)
+cortical_api <- function(path, querylist, api_key = NULL){
+  object <- httr::GET(url =  modify_url(url = "http://api.cortical.io/", port = 80, path = path,
+                              query = querylist),
+            add_headers(`api-key`= api_key(api_key)), user_agent("https://github.com/RMHogervorst/corticalio"))
+  object
 }
 
 
@@ -87,6 +90,10 @@ find_cortical_token <- function(){
   key
 }
 
+check_api_key <- function(){
+  Sys.getenv("CORTICALIO_KEY")
+}
+
 
 # key writing function
 # don't export, internal function.
@@ -131,11 +138,12 @@ content(object3, as = "parsed")[[1]]$fingerprint
 
 term_response_to_dataframe <- function(object){
   reply <- content(object, as = "parsed")
-  result <- data_frame(
+  result <- data.frame(
     term = reply[[1]][["term"]],
     df =   reply[[1]][["df"]],
     score = reply[[1]][["score"]],
-    pos_type = as.list(reply[[1]][["pos_types"]])
+    pos_type = as.list(reply[[1]][["pos_types"]]),
+    stringsAsFactors = FALSE
   )
   result
 }
@@ -162,11 +170,16 @@ reply <- content(terms_context_response, as = "parsed")
 
 term_context_to_dataframe <- function(object){
   reply <- content(object, as = "parsed")
-  result <- data_frame(
+  result <- data.frame(
     contextlabel = reply[[1]][["context_label"]],
-    contextid = reply[[1]][["context_id"]]
+    contextid = reply[[1]][["context_id"]],
+    stringsAsFactors = FALSE
   )
   result
 }
 
 term_context_to_dataframe(terms_context_response)
+
+
+
+

@@ -15,21 +15,21 @@
 cortical_terms <- function(term,retina_name = "en_associative", start_index=0,
                            max_results = 10, get_fingerprint = FALSE, api_key = NULL){
   #url <- cortical_api("terms/")
-  response <- httr::GET(url =  modify_url(url = "http://api.cortical.io/", port = 80, path = "rest/terms",
-                                               query = list(retina_name = retina_name,
-                                                            term = term,
-                                                            start_index = start_index,
-                                                            max_results = max_results,
-                                                            get_fingerprint = get_fingerprint
-                                               )),
-            add_headers(`api-key`= api_key(api_key)))
-  response <- statuscode_decoder(response)
+  response <- cortical_api(path = "rest/terms",
+                          querylist = list(retina_name = retina_name,
+                                           term = term,
+                                           start_index = start_index,
+                                           max_results = max_results,
+                                           get_fingerprint = get_fingerprint
+                          ))
+   response <- statuscode_decoder(response)
   # do something with response.
   response
 
 }
 
-object3 <- cortical_terms(term = "hotdog")
+object3 <- cortical_terms(term = "hotdog", api_key = NULL)
+
 object_with_fingerprint <- cortical_terms(term = "shoe", get_fingerprint = TRUE)
 status_code(object3)
 # works!.
@@ -39,14 +39,15 @@ status_code(object3)
 # retina name term start index, max_results. get fingerprint
 cortical_terms_context <- function(term,retina_name = "en_associative", start_index=0,
                                    max_results = 10, get_fingerprint = FALSE, api_key = NULL){
-  response <- httr::GET(url =  modify_url(url = "http://api.cortical.io/", port = 80, path = "rest/terms/contexts",
-                                          query = list(retina_name = retina_name,
-                                                       term = term,
-                                                       start_index = start_index,
-                                                       max_results = max_results,
-                                                       get_fingerprint = get_fingerprint
-                                          )),
-                        add_headers(`api-key`= api_key(api_key)))
+  response <- cortical_api(path = "rest/terms/contexts",
+                           querylist = list(
+                             retina_name = retina_name,
+                             term = term,
+                             start_index = start_index,
+                             max_results = max_results,
+                             get_fingerprint = get_fingerprint
+                           ),
+                           api_key = api_key)
   response <- statuscode_decoder(response)
   # do something with response.
   response
@@ -54,8 +55,30 @@ cortical_terms_context <- function(term,retina_name = "en_associative", start_in
 }
 #
 terms_context_response <- cortical_terms_context(term = "keyring")
-
+status_code(terms_context_response)
+term_context_to_dataframe(terms_context_response)
 
 # terms/similar_terms
 #
-#
+cortical_similar_terms <- function(term,retina_name = "en_associative", start_index=0,
+                                   max_results = 10,pos_type = NULL, get_fingerprint = FALSE, api_key = NULL){
+  if(!is.null(pos_type)){
+    if(!pos_type %in% c("NOUN", "ADJECTIVE", "VERB")){
+      stop("pos_type needs to be NULL, NOUN, ADJECTIVE, VERB")
+    }
+  }
+  response <- cortical_api(path = "rest/terms/similar_terms",
+                           querylist = list(
+                             retina_name = retina_name,
+                             term = term,
+                             start_index = start_index,
+                             max_results = max_results,
+                             pos_type = pos_type,
+                             get_fingerprint = get_fingerprint
+                           ),
+                           api_key = api_key)
+  response <- statuscode_decoder(response)
+  # do something with response.
+  response
+}
+object4 <- cortical_terms_context(term = "orangejuice")
