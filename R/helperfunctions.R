@@ -1,26 +1,40 @@
 # helperfunctions
 #
-cortical_api <- function(path){
-  modify_url(url = "http://api.cortical.io",port = 80, path = path)
+cortical_api <- function(path, querylist, api_key = NULL){
+  object <- httr::GET(url =  modify_url(url = "http://api.cortical.io/", port = 80, path = path,
+                              query = querylist),
+            add_headers(`api-key`= api_key(api_key)), user_agent("https://github.com/RMHogervorst/corticalio"))
+  object
 }
 
+cortical_api_post <- function(path, querylist, body , api_key = NULL){
+  object <- httr::POST(url =  modify_url(url = "http://api.cortical.io/",
+                                         port = 80,
+                                         path = path,
+                                         query = querylist),
+                       config = add_headers(`api-key`= api_key(api_key)), user_agent("https://github.com/RMHogervorst/corticalio"),
+                       body = body,
+                       encode = "json"
+                       )
+  object
+}
 
-construct_query_<- function(term, retina_name= "en_associative", startindex=0,
-                            max_result=11, pos_type="NOUN", fingerprint = FALSE){
-  #arguments <- list(...)
-  stopifnot(pos_type %in% c("NOUN","VERB",""))
-  lst<- list(
-    term = term,
-    retina_name = retina,
-    #term <- stringi::stri_trim_both(term),
-    start_index = startindex,
-    max_result = max_result,
-    pos_type = pos_type,
-    get_fingerprint = fingerprint
-
-  )
-  lst
-  }
+# construct_query_<- function(term, retina_name= "en_associative", startindex=0,
+#                             max_result=11, pos_type="NOUN", fingerprint = FALSE){
+#   #arguments <- list(...)
+#   stopifnot(pos_type %in% c("NOUN","VERB",""))
+#   lst<- list(
+#     term = term,
+#     retina_name = retina,
+#     #term <- stringi::stri_trim_both(term),
+#     start_index = startindex,
+#     max_result = max_result,
+#     pos_type = pos_type,
+#     get_fingerprint = fingerprint
+#
+#   )
+#   lst
+#   }
 #retina_name=en_associative&term=wizard&start_index=0&max_results=10&
 #pos_type=NOUN&get_fingerprint=false
 
@@ -32,10 +46,10 @@ extract_content <- function(object){
 
 }
 # $content %>% rawToChar( ) %>% fromJSON()
-request_get <- function(endpoint, term){
-  GET(url = cortical_api(path = endpoint), query = construct_query_(term = term),
-      add_headers(`api-key`= ))
-}
+# request_get <- function(endpoint, term){
+#   GET(url = cortical_api(path = endpoint), query = construct_query_(term = term),
+#       add_headers(`api-key`= ))
+# }
 
 
 #' Find or define API key for cortical.io
@@ -48,10 +62,10 @@ request_get <- function(endpoint, term){
 api_key <- function(key = NULL){
   if(is.null(key)){
     key <- find_cortical_token()
-  }else{
-    message("Setting key for this session")
-    Sys.setenv(CORTICALIO_KEY = key)
-  }
+  }#else{
+  #  message("Setting key for this session")
+  #  Sys.setenv(CORTICALIO_KEY = key)
+  #}
   key
 }
 
@@ -85,6 +99,10 @@ find_cortical_token <- function(){
     key <- Sys.getenv("CORTICALIO_KEY")
   }
   key
+}
+
+check_api_key <- function(){
+  Sys.getenv("CORTICALIO_KEY")
 }
 
 
@@ -131,11 +149,12 @@ content(object3, as = "parsed")[[1]]$fingerprint
 
 term_response_to_dataframe <- function(object){
   reply <- content(object, as = "parsed")
-  result <- data_frame(
+  result <- data.frame(
     term = reply[[1]][["term"]],
     df =   reply[[1]][["df"]],
     score = reply[[1]][["score"]],
-    pos_type = as.list(reply[[1]][["pos_types"]])
+    pos_type = as.list(reply[[1]][["pos_types"]]),
+    stringsAsFactors = FALSE
   )
   result
 }
@@ -162,11 +181,22 @@ reply <- content(terms_context_response, as = "parsed")
 
 term_context_to_dataframe <- function(object){
   reply <- content(object, as = "parsed")
-  result <- data_frame(
+  result <- data.frame(
     contextlabel = reply[[1]][["context_label"]],
-    contextid = reply[[1]][["context_id"]]
+    contextid = reply[[1]][["context_id"]],
+    stringsAsFactors = FALSE
   )
   result
 }
 
 term_context_to_dataframe(terms_context_response)
+
+
+retina_checker <- function(retina_name = NULL){
+  if(!is.null(retina_name) ){
+    if(!retina_name %in% c("en_associative", "en_synonymous") ){
+      stop("retina_name needs to be empty, en_associative or en_synonymous")
+    }
+  }
+  retina_name
+}
