@@ -1,4 +1,14 @@
 # retina
+#' Return information about the Retina
+#'
+#' This function is not that useful, it returns basic information about the
+#' current state of the two retinas in use.
+#'
+#' @param retina_name one of NULL,  en_associative or en_synomous see retina.
+#' @param api_key your key, if you saved the key in .renviron leave this NULL.
+#'
+#' @return information about the retina (database of words)
+#' @export
 cortical_retina <- function(retina_name = NULL,api_key = NULL){
   #input control
   retina_name <- retina_checker(retina_name)

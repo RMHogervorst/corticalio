@@ -140,11 +140,11 @@ statuscode_decoder <- function(object){
 
 }
 
-result <- content(object3,as = "text")
-str(unlist(result))
-jsonlite::fromJSON(result)
-
-content(object3, as = "parsed")[[1]]$fingerprint
+# result <- content(object3,as = "text")
+# str(unlist(result))
+# jsonlite::fromJSON(result)
+#
+# content(object3, as = "parsed")[[1]]$fingerprint
 
 
 term_response_to_dataframe <- function(object){
@@ -159,8 +159,8 @@ term_response_to_dataframe <- function(object){
   result
 }
 
-term_response_to_dataframe(object3)
-term_response_to_dataframe(object_with_fingerprint)
+# term_response_to_dataframe(object3)
+# term_response_to_dataframe(object_with_fingerprint)
 
 # work in this later.
 # Probably sparse matrix, have to find a way to
@@ -176,8 +176,8 @@ term_response_to_dataframe(object_with_fingerprint)
 # View(as.matrix(bla$positions,nrow = 128, ncol = 128, byrow = FALSE) )
 
 
-terms_context_response
-reply <- content(terms_context_response, as = "parsed")
+# terms_context_response
+# reply <- content(terms_context_response, as = "parsed")
 
 term_context_to_dataframe <- function(object){
   reply <- content(object, as = "parsed")
@@ -189,7 +189,7 @@ term_context_to_dataframe <- function(object){
   result
 }
 
-term_context_to_dataframe(terms_context_response)
+#term_context_to_dataframe(terms_context_response)
 
 
 retina_checker <- function(retina_name = NULL){
