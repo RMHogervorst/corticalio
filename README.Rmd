@@ -32,7 +32,11 @@ Got the basic functionality fixed.
 [x] - Term endpoint, GET 3 of the 3 types with response
 [x] - basic api key function that finds the correct key in Renviron or asks you for one.
 [x] - retina endpoint GET one function (not that usefull per se, could be used for demo purpose)
+<<<<<<< HEAD
 [x] - 5 of the 6 text inputs
+=======
+[x] - 4 of the 6 text inputs
+>>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
 
 
 
