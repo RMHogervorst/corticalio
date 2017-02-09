@@ -5,7 +5,11 @@ Version: 0.1.0
 Author: Roel M. Hogervorst
 Maintainer: Roel M. Hogervorst <hogervorst.rm@gmail.com>
 Description: Send words, or sentences to the API and get functional returns.
+<<<<<<< HEAD
     This package provides access to the cortical api with R functions.
+=======
+    This helps
+>>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
