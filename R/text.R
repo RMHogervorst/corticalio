@@ -126,8 +126,6 @@ cortical_text_slices <- function(text, retina_name = "en_associative",
 
 #
 # post /text/detect_language
-<<<<<<< HEAD
-<<<<<<< HEAD
 # body
 
 #' Detect language of a text
@@ -154,9 +152,4 @@ cortical_text_language <- function(text,
   response <- statuscode_decoder(response)
   response
 }
-=======
-# body
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
-=======
-# body
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
+

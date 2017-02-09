@@ -2,15 +2,7 @@ A Package to interact with the Cortical.io API
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<<<<<<< HEAD
-<<<<<<< HEAD
 [![Project Status: WIP ? Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--02--09-yellowgreen.svg)](/commits/master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/corticalioapi)](https://cran.r-project.org/package=corticalioapi) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
-=======
-[![Project Status: WIP ? Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--02--03-yellowgreen.svg)](/commits/master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/corticalioapi)](https://cran.r-project.org/package=corticalioapi) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
-=======
-[![Project Status: WIP ? Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--02--03-yellowgreen.svg)](/commits/master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/corticalioapi)](https://cran.r-project.org/package=corticalioapi) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-6666ff.svg)](https://cran.r-project.org/)
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
 
 Basic idea is to use the Cortical.io API from within R. Call all the endpoints from a function. Result is always a useful data frame or other result.
 
@@ -18,15 +10,7 @@ Got the basic functionality fixed.
 
 ### Working
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 \[x\] - Term endpoint, GET 3 of the 3 types with response \[x\] - basic api key function that finds the correct key in Renviron or asks you for one. \[x\] - retina endpoint GET one function (not that usefull per se, could be used for demo purpose) \[x\] - 5 of the 6 text inputs
-=======
-\[x\] - Term endpoint, GET 3 of the 3 types with response \[x\] - basic api key function that finds the correct key in Renviron or asks you for one. \[x\] - retina endpoint GET one function (not that usefull per se, could be used for demo purpose) \[x\] - 4 of the 6 text inputs
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
-=======
-\[x\] - Term endpoint, GET 3 of the 3 types with response \[x\] - basic api key function that finds the correct key in Renviron or asks you for one. \[x\] - retina endpoint GET one function (not that usefull per se, could be used for demo purpose) \[x\] - 4 of the 6 text inputs
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
 
 ### TODO
 

@@ -200,16 +200,9 @@ retina_checker <- function(retina_name = NULL){
   }
   retina_name
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 
 # to json decoder.
 # load jsonfile
 # give example list that are converted to json.
 # option raw, file, list
 # check list for valid things?
-=======
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
-=======
->>>>>>> 36b6aaeb95d7c3283f5d580c81e54d67c81abc35
