@@ -31,4 +31,3 @@ Describes what contexts this word is used in.
 Other terms: \code{\link{cortical_similar_terms}},
   \code{\link{cortical_terms}}
 }
-

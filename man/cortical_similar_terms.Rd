@@ -31,4 +31,3 @@ Returns similar words. For instance cat would return tiger.
 Other terms: \code{\link{cortical_terms_context}},
   \code{\link{cortical_terms}}
 }
-

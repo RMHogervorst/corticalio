@@ -1,5 +1,5 @@
 ## images ##
-#' return image
+#' Return visualisation of expression
 #'
 #' Implementation Notes
 #' This method returns a visualization of the specified expression.
@@ -16,7 +16,14 @@
 #' and only applied, if the fingerprint is more dense than the desired sparsity
 #' level. The following simple example can be used to get an image for a single
 #' input term.
-#'
+#' @param text the search
+#' @param retina_name one of en_associative or en_synomous see retina.
+#' @param image_scalar defaults to 2
+#' @param plot_shape circle or square
+#' @param sparsity defaults to 1
+#' @param image_encoding defaults to base64/png
+#' @param api_key your key, if you saved the key in .renviron leave this NULL.
+#' @export
 cortical_image <- function(text ,retina_name = "en_associative",
                            image_scalar = 2, plot_shape = "circle",
                            image_encoding = "base64/png", sparsity = 1.0,
@@ -37,18 +44,5 @@ cortical_image <- function(text ,retina_name = "en_associative",
                                 api_key = api_key)
   response <- statuscode_decoder(response)
   response
-
 }
-result <- cortical_image(text = list(term = "jaguar") )
-library(base64enc)
 
-
-conn <- file("w.bin","wb")
-writeBin(enc, conn)
-close(conn)
-
-inconn <- file("w.bin","rb")
-outconn <- file("img2.png","wb")
-base64decode(what=rawToChar(result$content), output=outconn)
-close(inconn)
-close(outconn)

@@ -1,50 +1,34 @@
 # helperfunctions
 #
 cortical_api <- function(path, querylist, api_key = NULL){
-  object <- httr::GET(url =  modify_url(url = "http://api.cortical.io/", port = 80, path = path,
+  object <- httr::GET(url =  httr::modify_url(url = "http://api.cortical.io/", port = 80, path = path,
                               query = querylist),
-            add_headers(`api-key`= api_key(api_key)), user_agent("https://github.com/RMHogervorst/corticalio"))
+            httr::add_headers(`api-key`= api_key(api_key)),
+            httr::user_agent("https://github.com/RMHogervorst/corticalio"))
   object
 }
 
 cortical_api_post <- function(path, querylist, body , api_key = NULL){
-  object <- httr::POST(url =  modify_url(url = "http://api.cortical.io/",
+  object <- httr::POST(url =  httr::modify_url(url = "http://api.cortical.io/",
                                          port = 80,
                                          path = path,
                                          query = querylist),
-                       config = add_headers(`api-key`= api_key(api_key)), user_agent("https://github.com/RMHogervorst/corticalio"),
+                       config = httr::add_headers(`api-key`= api_key(api_key)),
+                       httr::user_agent("https://github.com/RMHogervorst/corticalio"),
                        body = body,
                        encode = "json"
                        )
   object
 }
 
-# construct_query_<- function(term, retina_name= "en_associative", startindex=0,
-#                             max_result=11, pos_type="NOUN", fingerprint = FALSE){
-#   #arguments <- list(...)
-#   stopifnot(pos_type %in% c("NOUN","VERB",""))
-#   lst<- list(
-#     term = term,
-#     retina_name = retina,
-#     #term <- stringi::stri_trim_both(term),
-#     start_index = startindex,
-#     max_result = max_result,
-#     pos_type = pos_type,
-#     get_fingerprint = fingerprint
-#
+
+
+# extract_content <- function(object){
+#   jsonlite::fromJSON(
+#     rawToChar(object[["content"]])
 #   )
-#   lst
-#   }
-#retina_name=en_associative&term=wizard&start_index=0&max_results=10&
-#pos_type=NOUN&get_fingerprint=false
-
-
-extract_content <- function(object){
-  jsonlite::fromJSON(
-    rawToChar(object[["content"]])
-  )
-
-}
+#
+# }
 # $content %>% rawToChar( ) %>% fromJSON()
 # request_get <- function(endpoint, term){
 #   GET(url = cortical_api(path = endpoint), query = construct_query_(term = term),
@@ -89,7 +73,7 @@ find_cortical_token <- function(){
       choice <- readline("Do you  want to create that file? (y/n) ")
       if(choice== "y"){
         writeLines("CORTICALIO_KEY = ",file.path(normalizePath("~/"), ".Rtest") )
-        file.edit(file.path(normalizePath("~/"), ".Renviron"))
+        utils::file.edit(file.path(normalizePath("~/"), ".Renviron"))
       }else if(choice == "n"){
         message("You will have this message every time")
         key <- set_corticalio_key()
@@ -147,17 +131,6 @@ statuscode_decoder <- function(object){
 # content(object3, as = "parsed")[[1]]$fingerprint
 
 
-term_response_to_dataframe <- function(object){
-  reply <- content(object, as = "parsed")
-  result <- data.frame(
-    term = reply[[1]][["term"]],
-    df =   reply[[1]][["df"]],
-    score = reply[[1]][["score"]],
-    pos_type = as.list(reply[[1]][["pos_types"]]),
-    stringsAsFactors = FALSE
-  )
-  result
-}
 
 # term_response_to_dataframe(object3)
 # term_response_to_dataframe(object_with_fingerprint)
@@ -179,15 +152,6 @@ term_response_to_dataframe <- function(object){
 # terms_context_response
 # reply <- content(terms_context_response, as = "parsed")
 
-term_context_to_dataframe <- function(object){
-  reply <- content(object, as = "parsed")
-  result <- data.frame(
-    contextlabel = reply[[1]][["context_label"]],
-    contextid = reply[[1]][["context_id"]],
-    stringsAsFactors = FALSE
-  )
-  result
-}
 
 #term_context_to_dataframe(terms_context_response)
 

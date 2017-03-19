@@ -22,11 +22,11 @@ seperate words or only the part of speech you asked for
 \description{
 Send a text and return seperate words or only nouns, verbs,adjectives, etc
 or a combination.
-\link{http://documentation.cortical.io/working_with_text.html#pos-tags}
+\url{http://documentation.cortical.io/working_with_text.html#pos-tags}
 }
 \seealso{
 Other text: \code{\link{cortical_text_keywords}},
+  \code{\link{cortical_text_language}},
   \code{\link{cortical_text_representation}},
   \code{\link{cortical_text_slices}}
 }
-

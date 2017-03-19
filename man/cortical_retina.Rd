@@ -18,4 +18,3 @@ information about the retina (database of words)
 This function is not that useful, it returns basic information about the
 current state of the two retinas in use.
 }
-

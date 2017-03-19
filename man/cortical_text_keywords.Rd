@@ -20,8 +20,8 @@ a list of keywords
 Get a list of keywords that represent the text according to Cortical.io
 }
 \seealso{
-Other text: \code{\link{cortical_text_representation}},
+Other text: \code{\link{cortical_text_language}},
+  \code{\link{cortical_text_representation}},
   \code{\link{cortical_text_slices}},
   \code{\link{cortical_text_tokenize}}
 }
-

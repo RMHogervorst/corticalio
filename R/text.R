@@ -60,7 +60,7 @@ cortical_text_keywords <- function(text ,retina_name = "en_associative", api_key
 #'
 #' Send a text and return seperate words or only nouns, verbs,adjectives, etc
 #' or a combination.
-#' \link{http://documentation.cortical.io/working_with_text.html#pos-tags}
+#' \url{http://documentation.cortical.io/working_with_text.html#pos-tags}
 #'
 #' @inheritParams cortical_text_representation
 #' @param pos_tags a character representation such as "NNS" for nouns. see the link.
@@ -72,7 +72,8 @@ cortical_text_tokenize <- function(text, pos_tags = NULL,retina_name = "en_assoc
   retina_name <- retina_checker(retina_name)
   if(is.null(retina_name)){ retina_name <- "en_associative"}
   response <- cortical_api_post(path = "rest/text/tokenize",
-                                querylist = list(retina_name = retina_name, POStags = pos_tags),
+                                querylist = list(retina_name = retina_name,
+                                                 POStags = pos_tags),
                                 body = text,
                                 api_key = api_key)
   response <- statuscode_decoder(response)
@@ -106,7 +107,6 @@ cortical_text_slices <- function(text, retina_name = "en_associative",
   if(is.null(retina_name)){ retina_name <- "en_associative"}
   response <- cortical_api_post(path = "rest/text/slices",
                                 querylist = list(retina_name = retina_name,
-                                                 POStags = pos_tags,
                                                  start_index=start_index,
                                                  max_results = max_results,
                                                  get_fingerprint = get_fingerprint),
@@ -135,7 +135,7 @@ cortical_text_slices <- function(text, retina_name = "en_associative",
 #' of identifying more than 50 languages. For best results it is recommended
 #' that input texts consist of a minimum of 10 words (approximately 40 to 50
 #' characters).
-#' \link(http://api.cortical.io/Text.htm#!/text/getLanguage_post_5)
+#' \url{http://api.cortical.io/Text.htm#!/text/getLanguage_post_5}
 #'
 #' @param text input a character vector:  "a small lamb walked ..."
 #' @param api your key, if you saved the key in .renviron leave this NULL.

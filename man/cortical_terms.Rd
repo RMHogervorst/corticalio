@@ -37,8 +37,8 @@ zero or more characters. The question mark wildcard, '?', represents
 exactly one character.
 Information copied straight from the website \link{http://api.cortical.io/}
 }
+
 \seealso{
 Other terms: \code{\link{cortical_similar_terms}},
   \code{\link{cortical_terms_context}}
 }
-

@@ -22,7 +22,7 @@ Returns a representation of the text.
 }
 \seealso{
 Other text: \code{\link{cortical_text_keywords}},
+  \code{\link{cortical_text_language}},
   \code{\link{cortical_text_slices}},
   \code{\link{cortical_text_tokenize}}
 }
-

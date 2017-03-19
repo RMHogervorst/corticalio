@@ -31,7 +31,7 @@ to the text slice.
 }
 \seealso{
 Other text: \code{\link{cortical_text_keywords}},
+  \code{\link{cortical_text_language}},
   \code{\link{cortical_text_representation}},
   \code{\link{cortical_text_tokenize}}
 }
-

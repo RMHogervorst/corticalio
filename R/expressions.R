@@ -1,6 +1,6 @@
 # expressions
 #
-#' expression
+#' Expression
 #'
 #' This method returns a retina representation (a Fingerprint) of the
 #' result of the input expression. An expression can contain Terms,
@@ -9,11 +9,11 @@
 #' to sparsify the evaluated expression to a given percentage. The parameter
 #' is only interpreted when in the range (0,1), and only applied, if the
 #' fingerprint is more dense than the desired sparsity level.
-#' \link{http://api.cortical.io/Expression.htm#!/expressions/resolveExpression_post_0}
-#' @param retina_name
-#' @param text
-#' @param sparsity
-#' @param api_key
+#' \url{http://api.cortical.io/Expression.htm#!/expressions/resolveExpression_post_0}
+#' @param retina_name one of en_associative or en_synomous see retina.
+#' @param text input a character vector:  "a small lamb walked ..."
+#' @param sparsity standard 1.0, measure of sparsity.
+#' @param api_key your key, if you saved the key in .renviron leave this NULL.
 #' @export
 #' @family expressions
 cortical_expressions <- function(text ,sparsity = 1.0,
