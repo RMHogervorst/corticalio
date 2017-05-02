@@ -8,12 +8,13 @@ cortical_api <- function(path, querylist, api_key = NULL){
   object
 }
 
-cortical_api_post <- function(path, querylist, body , api_key = NULL){
+cortical_api_post <- function(path, querylist, body , api_key_ = NULL){
+  key <- api_key(api_key_)
   object <- httr::POST(url =  httr::modify_url(url = "http://api.cortical.io/",
                                          port = 80,
                                          path = path,
                                          query = querylist),
-                       config = httr::add_headers(`api-key`= api_key(api_key)),
+                       httr::add_headers(`api-key`= key),
                        httr::user_agent("https://github.com/RMHogervorst/corticalio"),
                        body = body,
                        encode = "json"
